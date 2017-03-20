@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDISTO ARRAY </title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="../layer/Marker.Text.js"></script>
+    <script src="../JS/Leaflet.label-master/libs/leaflet/leaflet.js"></script>
+    <script src="../JS/Leaflet.label-master/src/Leaflet.label.js"></script>
+    <link rel="stylesheet" href="../JS/Leaflet.label-master/dist/leaflet.label.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../JS/Leaflet.iconlabel-master/src/Icon.Label.css">
+    <script src="../JS/Leaflet.iconlabel-master/src/Icon.Label.Default.js"></script>
+</head>
+<body>
+
+<a class="fa fa-facebook-square social" href="https://facebook.com/sharer.php?u=http://www.mapio.us/lec17" target="_blank"></a>
+
+<i class="fa fa-info-circle social" style="top:8%" data-toggle="modal" data-target="#info-modal"></i>
+
+
+
+<div id="wrapper">
+<div id="map" style="width: 800px; height: 800px"></div>
+    <div id ="controls">
+        <div id="credits"><p> Winter 2017 | GEOG 371 | Geovisualization: Web Mapping &copy; Benjamin Wheeler, CEOAS, OSU</p></div>
+    </div>
+</div>
+
+<script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+</script>
+
+<script
+        src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js">
+</script>
+
+<script>
+
+    var planes = [
+        ["7C6B07",-40.99497,174.50808],
+        ["7C6B38",-41.30269,173.63696],
+        ["7C6CA1",-41.49413,173.5421],
+        ["7C6CA2",-40.98585,174.50659],
+        ["C81D9D",-40.93163,173.81726],
+        ["C82009",-41.5183,174.78081],
+        ["C82081",-41.42079,173.5783],
+        ["C820AB",-42.08414,173.96632],
+        ["C820B6",-41.51285,173.53274]
+    ];
+
+    var map = L.map('map').setView([-41.3058, 174.82082], 8);
+    mapLink =
+        '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+    L.tileLayer(
+        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+    for (var i = 0; i < planes.length; i++) {
+        marker = new L.marker([planes[i][1],planes[i][2]])
+            .bindPopup(planes[i][0])
+            .addTo(map);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDISTO ARRAY </title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="../layer/Marker.Text.js"></script>
+    <script src="../JS/Leaflet.label-master/libs/leaflet/leaflet.js"></script>
+    <script src="../JS/Leaflet.label-master/src/Leaflet.label.js"></script>
+    <link rel="stylesheet" href="../JS/Leaflet.label-master/dist/leaflet.label.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../JS/Leaflet.iconlabel-master/src/Icon.Label.css">
+    <script src="../JS/Leaflet.iconlabel-master/src/Icon.Label.Default.js"></script>
+</head>
+<body>
+
+<a class="fa fa-facebook-square social" href="https://facebook.com/sharer.php?u=http://www.mapio.us/lec17" target="_blank"></a>
+
+<i class="fa fa-info-circle social" style="top:8%" data-toggle="modal" data-target="#info-modal"></i>
+
+
+
+<div id="wrapper">
+<div id="map" style="width: 800px; height: 800px"></div>
+    <div id ="controls">
+        <div id="credits"><p> Winter 2017 | GEOG 371 | Geovisualization: Web Mapping &copy; Benjamin Wheeler, CEOAS, OSU</p></div>
+    </div>
+</div>
+
+<script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+</script>
+
+<script
+        src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js">
+</script>
+
+<script>
+
+    var MSValues = [
+        [67.5,-18.833,187,"1"],
+        [67.5,-18.833,122,"2"],
+        [67,-17.5,1016,"3"],
+        [67,-15,599,"4"],
+        [67.15,-9.833,159,"5"],
+        [68,-9.855,219,"6"],
+        [68,-7.5,183,"7"],
+        [67,-7.5,88,"8"],
+        [68.567,-1.433,81,"10"],
+        [68,0,58,"11"],
+        [69,0,58,"12"],
+        [69,-2.5,44,"13"],
+        [69,-5,210,"14"],
+        [69,-7.5,99,"15"],
+        [69.5,-8.5,354,"16"],
+        [69,-10,51,"17"],
+        [69.5,-11.25,62,"18"],
+        [70,-10,106,"19"],
+        [70,-7.5,174,"21"],
+        [70.5,-6.25,154,"22"],
+        [70,-2.5,55,"24"],
+        [70,0,12,"25"],
+        [71,-2.5,87,"27"],
+        [71,-5,125,"28"],
+        [71,-7.5,732,"29"],
+        [71,-10,310,"30"],
+        [71,-13,65,"32"],
+        [71,-19.25,176,"34"],
+        [70.5,-18.75,275,"35"],
+        [70.505,-16,53,"36"],
+        [70.55,-13.217,95,"37"],
+        [70.5,-11.25,154,"38"],
+        [70,-12.5,62,"39"],
+        [70,-15,88,"40"],
+        [70,-17.5,143,"41"],
+        [69.5,-20.917,55,"42"],
+        [69.5,-21.667,379,"44"],
+        [69,-20,356,"45"],
+        [69,-17.5,291,"47"],
+        [69.5,-16.25,63,"48"],
+        [69,-14.3,82,"49"],
+        [69.5,-13.75,52,"50"],
+        [69,-12.5,49,"51"],
+        [68,-12.5,64,"52"],
+        [68,-15,427,"53"],
+        [68,-17.5,72,"54"],
+        [68,-20,375,"55"],
+        [66.033,-9.867,1138,"60"],
+        [65.75,-7.9,179,"61"],
+        [66,-5,72,"62"],
+        [67,-2.5,25,"63"],
+        [67,0,151,"64"],
+        [65,4,110,"66"],
+        [64.5,6.5,37,"67"],
+        [64,8,100,"68"],
+        [64,4,82,"69"],
+        [64.5,2,62,"71"],
+        [65,0,95,"72"],
+        [65,-2.5,68,"73"],
+        [65,-7.5,99,"74"],
+        [65,-10,580,"76"],
+        [64,-7.5,214,"77"],
+        [64,-5,225,"82"],
+        [64,-2.5,96,"83"],
+        [63,0,295,"84"],
+        [63,-2.5,178,"86"],
+        [63,-5,220,"87"],
+        [61.167,-4,607,"88"],
+        [60.917,-3,1079,"93"],
+        [61.567,-2.067,350,"96"],
+        [62,-2,314,"97"],
+    ];
+    var map = L.map('map').setView([64.8580793, -9.8260084], 5);
+    map.options.minZoom = 4;
+    map.options.maxZoom = 6;
+    mapLink =
+        '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
+        maxZoom: 13
+        }).addTo(map);
+
+
+
+    var MS = L.icon({ iconUrl: "../img/black-dot-hi.png",
+        iconSize:     [10, 10], // size of the icon
+        iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    });
+
+    for (var i = 0; i < MSValues.length; i++) {
+        marker = new L.marker([MSValues[i][0], MSValues[i][1]], {icon: MS})
+            .bindPopup(MSValues[i][3])
+            .addTo(map);
+    }
+
+    var heat = L.heatLayer(MSValues,{
+        radius: 40,
+        blur: 60,
+        maxZoom: 14,
+    }).addTo(map);
+
+    var legend = L.control({position: 'topright'});
+
+    // Function that runs when legend is added to map
+    legend.onAdd = function () {
+
+        // Create Div Element and Populate it with HTML
+        var div = L.DomUtil.create('div', 'legend');
+        div.innerHTML += '<b># Magnetic Sucestibility Value</b><br />';
+        div.innerHTML += '<i style="background: #FF0000; opacity: 0.5"></i><p>800+</p>';
+        div.innerHTML += '<i style="background: #F7FE2E; opacity: 0.5"></i><p>600-800</p>';
+        div.innerHTML += '<i style="background: #40FF00; opacity: 0.5"></i><p>400-600</p>';
+        div.innerHTML += '<i style="background: #2EFEF7; opacity: 0.5"></i><p> 200-400</p>';
+        div.innerHTML += '<i style="background: #0000FF; opacity: 0.5"></i><p> 0- 200</p>';
+        div.innerHTML += '<hr><b>EDISTO Numbers<b><br />';
+        div.innerHTML += '<img src="img/Blackdot2.png"><p> 72 Total</p>';
+
+        // Return the Legend div containing the HTML content
+        return div;
+    };
+
+    // Add Legend to Map
+    legend.addTo(map);
+
+
+</script>
+<p>The above map shows the location of the EDISTO Sediment Cores collected in 1963.  The heat map represents the relative magnetic sucseptibility measured for each core.  Magnetic sucseptiblity is controlled by the amount of Ferro Magnetic Minerals located in each sample.  MS values have been related to the source of the sediment.  Those sediments with higher MS values most likely originated from Iceland where more basaltic rock is found.  Those cores with lower MS values likely originated from Greenland.  MS value is also related to the advance and retreat of the Greenland Ice Sheet. More samples with lower MS values means the glacier was retreating and deposition from Greenland was greater than that of Iceland.  If the Ice sheet was advancing, there would be less deposits with lower MS values and more with higher MS values.:</p>
+
+</body>
+</html>
