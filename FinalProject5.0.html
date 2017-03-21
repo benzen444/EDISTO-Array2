@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDISTO Array</title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+
+    <script src="../lib/leaflet-dist/leaflet.js"></script>
+</head>
+<body>
+
+<h1>EDISTO Array</h1>.
+
+<a class="fa fa-facebook-square social" href="https://facebook.com/sharer.php?u=https://github.com/benzen444/EDISTO-Array2/tree/master/Final_Project/Final%20Stuff" target="_blank"></a>
+
+<i class="fa fa-info-circle social" style="top:8%" data-toggle="modal" data-target="#info-modal"></i>
+
+
+<div
+        style="float:right"><img src="../img/CoreNumbers.png" height="500" width="600"/>
+</div>
+<div id="map" style="width: 800px; height: 800px"></div>
+
+<script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+</script>
+
+<script
+        src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js">
+</script>
+
+      <script>
+
+    var MSBULK = [
+        [67.5,-18.833,187,"MS 187 ID 1 <a href=../img/ED63-01PC-1A.png/><img  alt=ED63-01PC-1A >"],
+        [67,-17.5,1016,"MS 1016 ID 2 <a href=../img/ED63-02PC-1A.png/><img  alt=ED63-02PC-1A >"],
+        [67,-15,599,"MS 599 ID 3 <a href=../img/ED63-03PC-1A.png/><img  alt=ED63-03PC-1A >"],
+        [67.15,-9.833,159,"MS 159 ID 5 <a href=../img/ED63-05PC-1A.png/><img  alt=ED63-05PC-1A >"],
+        [68,-9.855,219,"MS 219 ID 6 <a href=../img/ED63-06PC-1A.png/><img  alt=ED63-06PC-1A >"],
+        [68,-7.5,183,"MS 183 ID 7 <a href=../img/ED63-07PC-1A.png/><img  alt=ED63-07PC-1A >"],
+        [67,-7.5,88,"MS 88 ID 8 <a href=../img/ED63-08PC-1A.png/><img  alt=ED63-08PC-1A >"],
+        [68.567,-1.433,81,"MS 81 ID 10 <a href=../img/ED63-10PC-1A.png/><img  alt=ED63-10PC-1A >"],
+        [68,0,58,"MS 58 ID 11 <a href=../img/ED63-11PC-1A.png/><img  alt=ED63-11PC-1A >"],
+        [69,0,58,"MS 58 ID 12 <a href=../img/ED63-12PC-1A.png/><img  alt=ED63-12PC-1A >"],
+        [69,-2.5,44,"MS 44 ID 13 <a href=../img/ED63-13PC-1A.png/><img  alt=ED63-13PC-1A >"],
+        [69,-5,210,"MS 210 ID 14 <a href=../img/ED63-14PC-1A.png/><img  alt=ED63-14PC-1A >"],
+        [69,-7.5,99,"MS 99 ID 15 <a href=../img/ED63-15PC-1A.png/><img  alt=ED63-15PC-1A >"],
+        [69.5,-8.5,354,"MS 354 ID 16 <a href=../img/ED63-16PC-1A.png/><img  alt=ED63-16PC-1A >"],
+        [69,-10,51,"MS 51 ID 17 <a href=../img/ED63-17PC-1A.png/><img  alt=ED63-17PC-1A >"],
+        [69.5,-11.25,62,"MS 62 ID 18 <a href=../img/ED63-18PC-1A.png/><img  alt=ED63-18PC-1A >"],
+        [70,-10,106,"MS 106 ID 19 <a href=../img/ED63-19PC-1A.png/><img  alt=ED63-19PC-1A >"],
+        [70,-7.5,174,"MS 174 ID 21 <a href=../img/ED63-21PC-1A.png/><img  alt=ED63-21PC-1A >"],
+        [70.5,-6.25,154,"MS 154 ID 22 <a href=../img/ED63-22PC-1A.png/><img  alt=ED63-22PC-1A >"],
+        [70,-2.5,55,"MS 55 ID 24 <a href=../img/ED63-24PC-1A.png/><img  alt=ED63-24PC-1A >"],
+        [70,0,12,"MS 12 ID 25 <a href=../img/ED63-25PC-1A.png/><img  alt=ED63-25PC-1A >"],
+        [71,-2.5,87,"MS 87 ID 27 <a href=../img/ED63-27PC-1A.png/><img  alt=ED63-27PC-1A >"],
+        [71,-5,125,"MS 125 ID 28 <a href=../img/ED63-28PC-1A.png/><img  alt=ED63-28PC-1A >"],
+        [71,-7.5,732,"MS 732 ID 29 <a href=../img/ED63-29PC-1A.png/><img  alt=ED63-29PC-1A >"],
+        [71,-10,310,"MS 310 ID 30 <a href=../img/ED63-30PC-1A.png/><img  alt=ED63-30PC-1A >"],
+        [71,-13,65,"MS 65 ID 32 <a href=../img/ED63-32PC-1A.png/><img  alt=ED63-32PC-1A >"],
+        [71,-19.25,176,"MS 176 ID 34 <a href=../img/ED63-34PC-1A.png/><img  alt=ED63-34PC-1A >"],
+        [70.5,-18.75,275,"MS 275 ID 35 <a href=../img/ED63-35PC-1A.png/><img  alt=ED63-35PC-1A >"],
+        [70.505,-16,53,"MS 53 ID 36 <a href=../img/ED63-36PC-1A.png/><img  alt=ED63-36PC-1A >"],
+        [70.55,-13.217,95,"MS 95 ID 37 <a href=../img/ED63-37PC-1A.png/><img  alt=ED63-37PC-1A >"],
+        [70.5,-11.25,154,"MS 154 ID 38 <a href=../img/ED63-38PC-1A.png/><img  alt=ED63-38PC-1A >"],
+        [70,-12.5,62,"MS 62 ID 39 <a href=../img/ED63-39PC-1A.png/><img  alt=ED63-39PC-1A >"],
+        [70,-15,88,"MS 88 ID 40 <a href=../img/ED63-40PC-1A.png/><img  alt=ED63-40PC-1A >"],
+        [70,-17.5,143,"MS 143 ID 41 <a href=../img/ED63-41PC-1A.png/><img  alt=ED63-41PC-1A >"],
+        [69.5,-20.917,55,"MS 55 ID 42 <a href=../img/ED63-42PC-1A.png/><img  alt=ED63-42PC-1A >"],
+        [69.5,-21.667,379,"MS 379 ID 44 <a href=../img/ED63-44PC-1A.png/><img  alt=ED63-44PC-1A >"],
+        [69,-20,356,"MS 356 ID 45 <a href=../img/ED63-45PC-1A.png/><img  alt=ED63-45PC-1A >"],
+        [69,-17.5,291,"MS 291 ID 47 <a href=../img/ED63-47PC-1A.png/><img  alt=ED63-47PC-1A >"],
+        [69.5,-16.25,63,"MS 63 ID 48 <a href=../img/ED63-48PC-1A.png/><img  alt=ED63-48PC-1A >"],
+        [69,-14.3,82,"MS 82 ID 49 <a href=../img/ED63-49PC-1A.png/><img  alt=ED63-49PC-1A >"],
+        [69.5,-13.75,52,"MS 52 ID 50 <a href=../img/ED63-50PC-1A.png/><img  alt=ED63-50PC-1A >"],
+        [69,-12.5,49,"MS 49 ID 51 <a href=../img/ED63-51PC-1A.png/><img  alt=ED63-51PC-1A >"],
+        [68,-12.5,64,"MS 64 ID 52 <a href=../img/ED63-52PC-1A.png/><img  alt=ED63-52PC-1A >"],
+        [68,-15,427,"MS 427 ID 53 <a href=../img/ED63-53PC-1A.png/><img  alt=ED63-53PC-1A >"],
+        [68,-17.5,72,"MS 72 ID 54 <a href=../img/ED63-54PC-1A.png/><img  alt=ED63-54PC-1A >"],
+        [68,-20,375,"MS 375 ID 55 <a href=../img/ED63-55PC-1A.png/><img  alt=ED63-55PC-1A >"],
+        [66.033,-9.867,1138,"MS 1138 ID 60 <a href=../img/ED63-60PC-1A.png/><img  alt=ED63-60PC-1A >"],
+        [65.75,-7.9,179,"MS 179 ID 61 <a href=../img/ED63-61PC-1A.png/><img  alt=ED63-61PC-1A >"],
+        [66,-5,72,"MS 72 ID 62 <a href=../img/ED63-62PC-1A.png/><img  alt=ED63-62PC-1A >"],
+        [67,-2.5,25,"MS 25 ID 63 <a href=../img/ED63-63PC-1A.png/><img  alt=ED63-63PC-1A >"],
+        [67,0,151,"MS 151 ID 64 <a href=../img/ED63-64PC-1A.png/><img  alt=ED63-64PC-1A >"],
+        [65,4,110,"MS 110 ID 67 <a href=../img/ED63-67PC-1A.png/><img  alt=ED63-67PC-1A >"],
+        [64.5,6.5,37,"MS 37 ID 68 <a href=../img/ED63-68PC-1A.png/><img  alt=ED63-68PC-1A >"],
+        [64,8,100,"MS 100 ID 69 <a href=../img/ED63-69PC-1A.png/><img  alt=ED63-69PC-1A >"],
+        [64,4,82,"MS 82 ID 71 <a href=../img/ED63-71PC-1A.png/><img  alt=ED63-71PC-1A >"],
+        [64.5,2,62,"MS 62 ID 72 <a href=../img/ED63-72PC-1A.png/><img  alt=ED63-72PC-1A >"],
+        [65,0,95,"MS 95 ID 73 <a href=../img/ED63-73PC-1A.png/><img  alt=ED63-73PC-1A >"],
+        [65,-2.5,68,"MS 68 ID 74 <a href=../img/ED63-74PC-1A.png/><img  alt=ED63-74PC-1A >"],
+        [65,-7.5,99,"MS 99 ID 76 <a href=../img/ED63-76PC-1A.png/><img  alt=ED63-76PC-1A >"],
+        [65,-10,580,"MS 580 ID 77 <a href=../img/ED63-77PC-1A.png/><img  alt=ED63-77PC-1A >"],
+        [64,-7.5,214,"MS 214 ID 82 <a href=../img/ED63-82PC-1A.png/><img  alt=ED63-82PC-1A >"],
+        [64,-5,225,"MS 225 ID 83 <a href=../img/ED63-83PC-1A.png/><img  alt=ED63-83PC-1A >"],
+        [64,-2.5,96,"MS 96 ID 84 <a href=../img/ED63-84PC-1A.png/><img  alt=ED63-84PC-1A >"],
+        [63,0,295,"MS 295 ID 86 <a href=../img/ED63-86PC-1A.png/><img  alt=ED63-86PC-1A >"],
+        [63,-2.5,178,"MS 178 ID 87 <a href=../img/ED63-87PC-1A.png/><img  alt=ED63-87PC-1A >"],
+        [63,-5,220,"MS 220 ID 88 <a href=../img/ED63-88PC-1A.png/><img  alt=ED63-88PC-1A >"],
+        [61.167,-4,607,"MS 607 ID 93 <a href=../img/ED63-93PC-1A.png/><img  alt=ED63-93PC-1A >"],
+        [60.917,-3,1079,"MS 1079 ID 94 <a href=../img/ED63-94PC-1A.png/><img  alt=ED63-94PC-1A >"],
+        [61.567,-2.067,350,"MS 350 ID 96 <a href=../img/ED63-96PC-1A.png/><img  alt=ED63-96PC-1A >"],
+        [62,-2,314,"MS 314  ID 97 <a href=../img/ED63-97PC-1A.png/><img  alt=ED63-97PC-1A >"],
+    ];
+
+
+
+    var MS = L.icon({ iconUrl: "../img/black-dot-hi.png",
+        iconSize:     [10, 10], // size of the icon
+        iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    });
+
+
+    var map = L.map('map').setView([64.8580793, -9.8260084], 5);
+    map.options.minZoom = 4;
+    map.options.maxZoom = 6;
+    mapLink =
+        '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
+        maxZoom: 13
+    }).addTo(map);
+
+    for (var i = 0; i <MSBULK.length; i++) {
+        marker = new L.marker([MSBULK[i][0],MSBULK[i][1]],{icon:MS})
+            .bindPopup(MSBULK[i][3])
+            .addTo(map);
+    }
+
+    var heatbulkMS = L.heatLayer(MSBULK,{
+        radius: 40,
+        blur: 35,
+        maxZoom: 14,
+    }).addTo(map);
+
+    var baseMaps = {
+        "map": L.map
+    };
+
+    var overlayMaps = {
+        "markers": MS,
+        "Bulk MS": heatbulkMS
+    };
+
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+    L.control.scale().addTo(map);
+
+    // Set function for color ramp
+    function getColor(d) {
+        return d > 300 ? '#FF0000' :
+            d > 200  ? '#F7FE2E' :
+                d > 100  ? '#40FF00' :
+                    d > 50  ? '#2EFEF7' :
+                                    '#0000FF';
+    }
+
+
+    var legend = L.control({position: 'bottomleft'});
+
+    // Function that runs when legend is added to map
+    legend.onAdd = function () {
+
+        // Create Div Element and Populate it with HTML
+        var div = L.DomUtil.create('div', 'legend');
+        div.innerHTML += '<b># Magnetic Susceptibility Value</b><br />';
+        div.innerHTML += '<i style="background: #FF0000; opacity: 0.5"></i><p>300+</p>';
+        div.innerHTML += '<i style="background: #F7FE2E; opacity: 0.5"></i><p>200-300</p>';
+        div.innerHTML += '<i style="background: #40FF00; opacity: 0.5"></i><p>100-200</p>';
+        div.innerHTML += '<i style="background: #2EFEF7; opacity: 0.5"></i><p>50-100</p>';
+        div.innerHTML += '<i style="background: #0000FF; opacity: 0.5"></i><p><50</p>';
+        div.innerHTML += '<hr><b>EDISTO Cores<b><br />';
+        div.innerHTML += '<img src="../img/black-dot-hi.png" height="10" width="10"><p> 72 Total</p>';
+
+        // Return the Legend div containing the HTML content
+        return div;
+    };
+
+    // Add Legend to Map
+    legend.addTo(map);
+
+</script>
+
+    The above map shows the location of the EDISTO Sediment Cores collected in 1963.  The heat map represents the relative magnetic sucseptibility measured for each core.  Magnetic Susceptibility is controlled by the amount of Ferro Magnetic Minerals located in each sample.  MS values have been related to the source of the sediment.  Those sediments with higher MS values most likely originated from Iceland where more basaltic rock is found.  Those cores with lower MS values likely originated from Greenland.  MS value is also related to the advance and retreat of the Greenland Ice Sheet. More samples with lower MS values means the glacier was retreating and deposition from Greenland was greater than that of Iceland.  If the Ice sheet was advancing, there would be less deposits with lower MS values and more with higher MS values.:</div>
+
+        <iframe width="1000" height="646" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?cid=761D655373DB03CF&resid=761D655373DB03CF%21680&authkey=APCm7w1X7DI0uys&em=2&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True"></iframe>
+    <iframe src="https://onedrive.live.com/embed?cid=761D655373DB03CF&resid=761D655373DB03CF%21681&authkey=ANe7wKO9615_AwE" width="98" height="120" frameborder="0" scrolling="no"></iframe>
+
+
+</body>
+</html>
